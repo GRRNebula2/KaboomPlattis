@@ -59,5 +59,50 @@ class UIManager {
          })
     }
 
+    displayControlsMenu() {
+        add([sprite("forest-background"),
+            scale(4)
+         ])
+         add([
+            text("Controls",{font: "Round", size: 50}),
+            area(),
+            anchor("center"),
+            pos(center().x, center().y - 200)
+         ])
+
+         const controlPromts = add([
+            pos(center().x + 30, center().y)
+         ])
+
+         controlPromts.add([
+            sprite("up"),
+            pos(0, -80)
+         ])
+         controlPromts.add([sprite("down")])
+         controlPromts.add([sprite("left"), pos(-80, 0)])
+         controlPromts.add([sprite("right"), pos(80, 0)])
+         controlPromts.add([sprite("space"), pos(-200, 0)])
+
+         controlPromts.add([
+            text("Jump", {font: "Round", size: 32}),
+            pos(-190, 100),
+         ])
+
+         controlPromts.add([
+            text("Move", {font: "Round", size: 32}),
+            pos(10, 100),
+         ])
+
+         this.displayBlinkingUIMessage(
+            "Press [Enter] to Start Game",
+            vec2(center().x, center().y + 300)
+            )
+        
+        onKeyPress("enter", () => {
+            play("confirm-ui", { speed: 1.5 })
+            go(1)
+         })
+    }
+
 }
 export const uiManager = new UIManager()

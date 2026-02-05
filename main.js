@@ -17,7 +17,7 @@ const scenes = {
         uiManager.displayMainMenu()
     },
     controls: () => {
-
+        uiManager.displayControlsMenu()
     },
     1: () => {
 

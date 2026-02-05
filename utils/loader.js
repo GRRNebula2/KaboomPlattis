@@ -5,5 +5,8 @@ export const load = {
     assets: () => {
         loadSprite("forest-background", "./assets/Forest_background_0.png"),
         loadSprite("logo", "./assets/Logo.png")
+    },
+    sounds: () => {
+        loadSound("confirm-ui", "./sounds/confirm-ui.wav")
     }
 }

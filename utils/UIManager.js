@@ -17,9 +17,23 @@ class UIManager {
                 message.opacity,
                 0,
                 0.5,
-                (opacity) => 
-                    message.opacity = opacity
+                (nextOpacityValue) => 
+                    message.opacity = nextOpacityValue,
+                easings.linear
             )
+            message.enterState("flash-down")
+        })
+
+        message.onStateEnter("flash-down", async () => {
+            await tween(
+                message.opacity,
+                1,
+                0.5,
+                (nextOpacityValue) => 
+                    message.opacity = nextOpacityValue,
+                easings.linear
+            )
+            message.enterState("flash-up")
         })
     }
 
@@ -34,9 +48,16 @@ class UIManager {
             pos(center().x, center().y - 200),
             scale(8)
          ])
+         this.displayBlinkingUIMessage(
+         "Press [Enter] to Start Game",
+         vec2(center().x, center().y + 100)
+         )
+
+         onKeyPress("enter", () => {
+            play("confirm-ui", { speed: 1.5 })
+            go("controls")
+         })
     }
 
-    
 }
-
 export const uiManager = new UIManager()

@@ -8,8 +8,53 @@ export const load = {
         loadSprite("left", "./assets/Arrow_Left_Key_Dark.png")
         loadSprite("right", "./assets/Arrow_Right_Key_Dark.png")
         loadSprite("space", "./assets/Space_Key_Dark.png")
+        
+        loadSprite("coin", "./assets/Coin.png")
+        loadSprite("bridge", "./assets/Bridge.png")
+        
         loadSprite("forest-background", "./assets/Forest_background_0.png"),
         loadSprite("logo", "./assets/Logo.png")
+        loadSprite("grass-tileset", "./assets/Grass_Tileset.png", {
+            sliceX: 3,
+            sliceY: 4,
+            anims: {
+                tm: 1,
+                tr: 2,
+                ml: 3,
+                mm: 4, 
+                mr: 5,
+                bl: 6,
+                bm: 7, 
+                br: 8
+            }
+        }),
+        loadSprite("grass-oneway-tileset", "./assets/Grass_Oneway.png", {
+            sliceX: 3,
+            sliceY: 4,
+            anims: {
+              tl: 0,
+              tm: 1,
+              tr: 2,
+              ml: 3,
+              mm: 4,
+              mr: 5,
+              bl: 6,
+              bm: 7,
+              br: 8,
+            },
+          }),
+          loadSprite("water", "./assets/Water.png", {
+            sliceX: 8,
+            sliceY: 1,
+            anims: {
+              wave: {
+                from: 0,
+                to: 7,
+                speed: 16,
+                loop: true,
+              },
+            },
+          })
     },
     sounds: () => {
         loadSound("confirm-ui", "./sounds/confirm-ui.wav")

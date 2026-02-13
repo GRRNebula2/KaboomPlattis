@@ -13,6 +13,7 @@ export class Player {
         this.initialX = posX
         this.initialY = posY
         this.makePlayer()
+        this.setPlayerControls()
         this.speed = speed
         this.jumpForce = jumpForce
         this.lives = nbLives
@@ -29,5 +30,34 @@ export class Player {
             body(),
             "player",
           ])
+    }
+
+    setPlayerControls() {
+        onKeyDown("left", () => {
+            if (this.gameObj.curAnim() !== "run") this.gameObj.play("run")
+            this.gameObj.flipX = true
+            this.gameObj.move(-this.speed, 0)
+        })
+
+        onKeyDown("right", () => {
+            if (this.gameObj.curAnim() !== "run") this.gameObj.play("run")
+            this.gameObj.flipX = false
+            this.gameObj.move(this.speed, 0)
+        })
+
+        onKeyDown("space", () => {
+             if (this.gameObj.isGrounded()) {
+                this.gameObj.jump(this.jumpForce)
+                play("jump")
+            }
+        })
+
+        onKeyRelease(() => {
+            if (isKeyReleased("right") || isKeyReleased("left")) {
+                this.gameObj.play("idle")
+            }
+        })
+        
+
     }
 }

@@ -1,4 +1,6 @@
 export class Player {
+    isRespawning = false
+
     constructor(
         posX, 
         posY, 
@@ -36,17 +38,17 @@ export class Player {
         onKeyDown("left", () => {
             if (this.gameObj.curAnim() !== "run") this.gameObj.play("run")
             this.gameObj.flipX = true
-            this.gameObj.move(-this.speed, 0)
+            if (!this.isRespawning) this.gameObj.move(-this.speed, 0)
         })
 
         onKeyDown("right", () => {
             if (this.gameObj.curAnim() !== "run") this.gameObj.play("run")
             this.gameObj.flipX = false
-            this.gameObj.move(this.speed, 0)
+            if (!this.isRespawning) this.gameObj.move(this.speed, 0)
         })
 
         onKeyDown("space", () => {
-             if (this.gameObj.isGrounded()) {
+             if (this.gameObj.isGrounded() && !this.isRespawning) {
                 this.gameObj.jump(this.jumpForce)
                 play("jump")
             }
@@ -57,7 +59,22 @@ export class Player {
                 this.gameObj.play("idle")
             }
         })
-        
+    }
 
+    respawnPlayer() {
+        if (this.lives > 0) {
+            this.gameObj.pos = vec2(this.initialX, this.initialY)
+            this.isRespawning = true
+            setTimeout(() => this.isRespawning = false, 400)
+        }
+    }
+
+    update() {
+        onUpdate(() => {
+            if (this.gameObj.pos.y > 1000) {
+                play("hit", {speed: 1.5})
+                this.respawnPlayer()
+            }
+        })
     }
 }

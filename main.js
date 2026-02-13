@@ -4,7 +4,7 @@ import { uiManager } from "./utils/UIManager.js"
 import { load } from "./utils/loader.js"
 import { Level } from "./utils/Level.js"
 import { Player } from "./entities/Player.js"
-import { Camera } from "./utils/Camera.js"
+import { attachCamera } from "./utils/camera.js"
 
 kaboom({
     width: 1280,
@@ -24,6 +24,8 @@ const scenes = {
         uiManager.displayControlsMenu()
     },
     1: () => {
+        setGravity(1400)
+
         const level1 = new Level()
         level1.drawBackground("forest-background")
         level1.drawMapLayout(level1Layout, level1Mappings)
@@ -38,8 +40,8 @@ const scenes = {
             false
         )
 
-        const camera = new Camera()
-        camera.attach(player.gameObj, 0, -200)
+      //  const camera = new Camera()
+        attachCamera(player.gameObj, 0, 200)
 
         level1.drawWaves("water", "wave")
     },

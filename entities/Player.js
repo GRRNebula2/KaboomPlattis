@@ -1,4 +1,6 @@
 export class Player {
+    heightDelta = 0
+    isMoving = false
     isRespawning = false
 
     constructor(
@@ -48,14 +50,16 @@ export class Player {
     setPlayerControls() {
         onKeyDown("left", () => {
             if (this.gameObj.curAnim() !== "run") this.gameObj.play("run")
-            this.gameObj.flipX = true
+                this.gameObj.flipX = true
             if (!this.isRespawning) this.gameObj.move(-this.speed, 0)
+                this.isMoving = true
         })
 
         onKeyDown("right", () => {
             if (this.gameObj.curAnim() !== "run") this.gameObj.play("run")
-            this.gameObj.flipX = false
+                this.gameObj.flipX = false
             if (!this.isRespawning) this.gameObj.move(this.speed, 0)
+                this.isMoving = true
         })
 
         onKeyDown("space", () => {
@@ -68,6 +72,7 @@ export class Player {
         onKeyRelease(() => {
             if (isKeyReleased("right") || isKeyReleased("left")) {
                 this.gameObj.play("idle")
+                this.isMoving = false
             }
         })
     }
@@ -82,9 +87,31 @@ export class Player {
 
     update() {
         onUpdate(() => {
+            this.heightDelta = this.previousHeigth - this.gameObj.pos.y
+            this.previousHeigth = this.gameObj.pos.y
+
             if (this.gameObj.pos.y > 1000) {
                 play("hit", {speed: 1.5})
                 this.respawnPlayer()
+            }
+
+            if (!this.isMoving && 
+            this.gameObj.curAnim() !== "idle") {
+                this.gameObj.play("idle")
+            }
+
+            if (!this.gameObj.isGrounded() &&
+            this.heightDelta > 0 &&
+            this.gameObj.curAnim() !== "jump-up"
+            ) {
+                this.gameObj.play("jump-up")
+            }
+
+            if (!this.gameObj.isGrounded() &&
+            this.heightDelta < 0 &&
+            this.gameObj.curAnim() !== "jump-down"
+            ) {
+                this.gameObj.play("jump-down")
             }
         })
     }

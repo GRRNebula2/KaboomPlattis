@@ -42,6 +42,7 @@ const scenes = {
             false
         )
 
+        player.enablePassthrough()
         player.update()
 
       //  const camera = new Camera()

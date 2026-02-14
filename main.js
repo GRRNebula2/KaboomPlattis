@@ -6,7 +6,8 @@ import { uiManager } from "./utils/UIManager.js"
 import { load } from "./utils/loader.js"
 import { level1Config } from "./content/level1/config.js"
 import { level1Layout, level1Mappings } from "./content/level1/level1Layout.js"
-
+import { level2Config } from "./content/level2/config.js"
+import { level2Layout, level2Mappings } from "./content/level2/level2Layout.js"
 
 kaboom({
     width: 1280,
@@ -61,6 +62,39 @@ const scenes = {
 
     },
     2: () => {
+        setGravity(1400)
+
+        const level2 = new Level()
+        level2.drawBackground("castle-background")
+        level2.drawMapLayout(level2Layout, level2Mappings)
+
+        const player = new Player(
+            level2Config.PlayerStartPosX,
+            level2Config.PlayerStartPosY,
+            level2Config.PlayerSpeed,
+            level2Config.jumpForce,
+            level2Config.nbLives,
+            2,
+            false
+        )
+
+        player.enablePassthrough()
+        player.enableCoinPickUp()
+        player.update()
+
+        attachCamera(player.gameObj, 0, 200)
+
+        level2.drawWaves("lava", "wave")
+
+        
+        uiManager.addDarkBg()
+
+        uiManager.displayCoinCount()
+        player.updateCoinCount(uiManager.coinCountUI)
+
+        uiManager.displayLivesCount()
+        player.updateLives(uiManager.livesCountUI)
+
 
     },
     3: () => {

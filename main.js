@@ -49,9 +49,16 @@ const scenes = {
         attachCamera(player.gameObj, 0, 200)
 
         level1.drawWaves("water", "wave")
+
         
+        uiManager.addDarkBg()
+
         uiManager.displayCoinCount()
         player.updateCoinCount(uiManager.coinCountUI)
+
+        uiManager.displayLivesCount()
+        player.updateLives(uiManager.livesCountUI)
+
     },
     2: () => {
 

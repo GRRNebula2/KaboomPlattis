@@ -110,10 +110,13 @@ export class Player {
 
     respawnPlayer() {
         if (this.lives > 0) {
+            this.lives--
             this.gameObj.pos = vec2(this.initialX, this.initialY)
             this.isRespawning = true
             setTimeout(() => this.isRespawning = false, 400)
+            return
         }
+        go("gameover")
     }
 
     update() {
@@ -151,6 +154,12 @@ export class Player {
             ) {
                 this.gameObj.play("jump-down")
             }
+        })
+    }
+
+    updateLives(livesCountUI) {
+        onUpdate(() => {
+            livesCountUI.text = this.lives
         })
     }
 

@@ -1,6 +1,21 @@
 class UIManager {
 
     displayLivesCount(player) {
+        this.livesCountUI = add([
+            text("", {
+                font: "Round",
+                size: 50
+            }),
+            fixed(),
+            pos(70, 10)
+        ])
+
+        this.livesCountUI.add([
+            sprite("star-icon"),
+            pos(-60, -5),
+            scale(3),
+            fixed()
+        ])
 
     }
 
@@ -127,6 +142,13 @@ class UIManager {
             play("confirm-ui", { speed: 1.5 })
             go(1)
          })
+    }
+    addDarkBg() {
+        add([
+            rect(270, 130),
+            color(0, 0, 0), 
+            fixed()
+        ])
     }
 
 }

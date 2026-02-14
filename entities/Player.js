@@ -2,6 +2,7 @@ export class Player {
     heightDelta = 0
     isMoving = false
     isRespawning = false
+    coyoteLapse = 0.1
 
     constructor(
         posX, 
@@ -64,9 +65,29 @@ export class Player {
 
         onKeyDown("space", () => {
              if (this.gameObj.isGrounded() && !this.isRespawning) {
+                this.hasJumpedOnce = true
                 this.gameObj.jump(this.jumpForce)
                 play("jump")
             }
+            if (!this.gameObj.isGrounded() &&
+                time() - this.timeSinceLastGrounded < this.coyoteLapse &&
+                !this.hasJumpedOnce
+            ) {
+                this.hasJumpedOnce = true
+                this.gameObj.jump(this.jumpForce)
+                play("jump")
+            }
+
+            /*            
+            if (!this.gameObj.isGrounded() && this.hasJumpedOnce) return
+
+            if (time() - this.timeSinceLastGrounded > this.coyoteLapse) return
+
+            this.gameObj.jump(this.jumpForce)
+            if (this.gameObj.curAnim() !== jump) this.gameObj.play("jump")
+            play("jump")
+            this.hasJumpedOnce = true */
+
         })
 
         onKeyRelease(() => {
@@ -87,6 +108,13 @@ export class Player {
 
     update() {
         onUpdate(() => {
+            if (this.gameObj.isGrounded()) {
+                this.hasJumpedOnce = false
+                this.timeSinceLastGrounded = time()
+            }
+
+
+
             this.heightDelta = this.previousHeigth - this.gameObj.pos.y
             this.previousHeigth = this.gameObj.pos.y
 

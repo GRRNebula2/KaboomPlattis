@@ -79,5 +79,6 @@ export const load = {
         loadSound("confirm-ui", "./sounds/confirm-ui.wav")
         loadSound("jump", "./sounds/jump.wav")
         loadSound("hit", "./sounds/hit.wav")
+        loadSound("coin", "./sounds/coin.wav")
     }
 }

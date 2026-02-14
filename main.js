@@ -43,6 +43,7 @@ const scenes = {
         )
 
         player.enablePassthrough()
+        player.enableCoinPickUp()
         player.update()
 
       //  const camera = new Camera()

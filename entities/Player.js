@@ -3,6 +3,7 @@ export class Player {
     isMoving = false
     isRespawning = false
     coyoteLapse = 0.1
+    coins = 0
 
     constructor(
         posX, 
@@ -45,6 +46,15 @@ export class Player {
             if (collision.target.is("passthrough") && isKeyDown("down")) {
                 collision.preventResolution()
             }
+        })
+    }
+
+    enableCoinPickUp() {
+        this.gameObj.onCollide("coin", (coin) => {
+            this.coins++
+            destroy(coin)
+            play("coin")
+            
         })
     }
 

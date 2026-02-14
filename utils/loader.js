@@ -9,6 +9,7 @@ export const load = {
         loadSprite("right", "./assets/Arrow_Right_Key_Dark.png")
         loadSprite("space", "./assets/Space_Key_Dark.png")
         
+        loadSprite("coin-icon", "./assets/Coins_Ui.png")
         loadSprite("coin", "./assets/Coin.png")
         loadSprite("bridge", "./assets/Bridge.png")
         

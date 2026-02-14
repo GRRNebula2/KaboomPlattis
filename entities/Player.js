@@ -54,7 +54,7 @@ export class Player {
             this.coins++
             destroy(coin)
             play("coin")
-            
+
         })
     }
 
@@ -153,4 +153,12 @@ export class Player {
             }
         })
     }
+
+    updateCoinCount(coinCountUI) {
+        onUpdate(() => {
+            coinCountUI.text = `${this.coins} / ${coinCountUI.fullCoinCount} `
+
+        })
+    }
+
 }

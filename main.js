@@ -46,10 +46,12 @@ const scenes = {
         player.enableCoinPickUp()
         player.update()
 
-      //  const camera = new Camera()
         attachCamera(player.gameObj, 0, 200)
 
         level1.drawWaves("water", "wave")
+        
+        uiManager.displayCoinCount()
+        player.updateCoinCount(uiManager.coinCountUI)
     },
     2: () => {
 

@@ -16,6 +16,9 @@ export const load = {
         
         loadSprite("forest-background", "./assets/Forest_Background_0.png"),
         loadSprite("castle-background", "./assets/Castle_Background_0.png")
+        loadSprite("sky-background-0", "./assets/Sky_Background_0.png")
+        loadSprite("sky-background-1", "./assets/Sky_Background_1.png")
+        loadSprite("sky-background-2", "./assets/Sky_Background_2.png")
         loadSprite("logo", "./assets/Logo.png")
         loadSprite("grass-tileset", "./assets/Grass_Tileset.png", {
             sliceX: 3,
@@ -77,6 +80,36 @@ export const load = {
             },
           }),
 
+          loadSprite("rock-tileset", "./assets/Grass_Rock_Tileset.png", {
+            sliceX: 3,
+            sliceY: 4,
+            anims: {
+                tm: 1,
+                tr: 2,
+                ml: 3,
+                mm: 4, 
+                mr: 5,
+                bl: 6,
+                bm: 7, 
+                br: 8
+            }
+        }),
+        loadSprite("rock-oneway-tileset", "./assets/Grass_Rock_Oneway.png", {
+            sliceX: 3,
+            sliceY: 4,
+            anims: {
+              tl: 0,
+              tm: 1,
+              tr: 2,
+              ml: 3,
+              mm: 4,
+              mr: 5,
+              bl: 6,
+              bm: 7,
+              br: 8,
+            },
+          }),
+
 
           loadSprite("water", "./assets/Water.png", {
             sliceX: 8,
@@ -103,6 +136,20 @@ export const load = {
               },
             },
           }),
+
+          loadSprite("clouds", "./assets/Clouds.png", {
+            sliceX: 8,
+            sliceY: 1,
+            anims: {
+              wave: {
+                from: 0,
+                to: 7,
+                speed: 16,
+                loop: true,
+              },
+            },
+          }),
+
 
           loadSprite("player", "./assets/Player.png", {
             sliceX: 4,

@@ -8,6 +8,9 @@ import { level1Config } from "./content/level1/config.js"
 import { level1Layout, level1Mappings } from "./content/level1/level1Layout.js"
 import { level2Config } from "./content/level2/config.js"
 import { level2Layout, level2Mappings } from "./content/level2/level2Layout.js"
+import { level3Config } from "./content/level3/config.js"
+import { level3Layout, level3Mappings } from "./content/level3/level3Layout.js"
+
 
 kaboom({
     width: 1280,
@@ -98,6 +101,43 @@ const scenes = {
 
     },
     3: () => {
+
+        setGravity(1400)
+
+        const level3 = new Level()
+        level3.drawBackground("sky-background-0")
+        level3.drawBackground("sky-background-1")
+        level3.drawBackground("sky-background-2")
+        
+        level3.drawMapLayout(level3Layout, level3Mappings)
+
+        const player = new Player(
+            level3Config.PlayerStartPosX,
+            level3Config.PlayerStartPosY,
+            level3Config.PlayerSpeed,
+            level3Config.jumpForce,
+            level3Config.nbLives,
+            3,
+            true
+        )
+
+        player.enablePassthrough()
+        player.enableCoinPickUp()
+        player.update()
+
+        attachCamera(player.gameObj, 0, 200)
+
+        level3.drawWaves("clouds", "wave")
+
+        
+        uiManager.addDarkBg()
+
+        uiManager.displayCoinCount()
+        player.updateCoinCount(uiManager.coinCountUI)
+
+        uiManager.displayLivesCount()
+        player.updateLives(uiManager.livesCountUI)
+
 
     },
     gameover: () => {

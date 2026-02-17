@@ -119,6 +119,14 @@ export class Player {
         go("gameover")
     }
 
+    enableMobVulnerability() {
+        function hitAndRespawn(context) {
+            play("hit", {speed: 1.5})
+            context.respawnPlayer()
+        }
+        this.gameObj.onCollide("spiders", () => hitAndRespawn(this))
+    }
+
     update() {
         onUpdate(() => {
             if (this.gameObj.isGrounded()) {

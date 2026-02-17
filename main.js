@@ -10,6 +10,7 @@ import { level2Config } from "./content/level2/config.js"
 import { level2Layout, level2Mappings } from "./content/level2/level2Layout.js"
 import { level3Config } from "./content/level3/config.js"
 import { level3Layout, level3Mappings } from "./content/level3/level3Layout.js"
+import { Spiders } from "./entities/Spiders.js"
 
 
 kaboom({
@@ -48,7 +49,18 @@ const scenes = {
 
         player.enablePassthrough()
         player.enableCoinPickUp()
+        player.enableMobVulnerability()
         player.update()
+
+        const spiders = new Spiders(
+            level1Config.spiderPositions.map(spiderPos => spiderPos()),
+            level1Config.spiderRanges,
+            level1Config.spiderDurations,
+            level1Config.spiderType
+        )
+
+        spiders.setMovementPattern()
+        spiders.enablePassthrough()
 
         attachCamera(player.gameObj, 0, 200)
 
@@ -108,7 +120,7 @@ const scenes = {
         level3.drawBackground("sky-background-0")
         level3.drawBackground("sky-background-1")
         level3.drawBackground("sky-background-2")
-        
+
         level3.drawMapLayout(level3Layout, level3Mappings)
 
         const player = new Player(

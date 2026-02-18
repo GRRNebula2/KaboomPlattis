@@ -35,7 +35,7 @@ export class Saws {
                     saw.angle,
                     360,
                     2,
-                    (currAngle) => (saw.angle - currAngle),
+                    (currAngle) => (saw.angle = currAngle),
                     easings.linear
                 )
             ])

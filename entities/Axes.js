@@ -17,7 +17,6 @@ export class Axes {
                     rotate(),
                     offscreen(),
                     "axes",
-
                 ])
             )
 

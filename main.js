@@ -13,6 +13,7 @@ import { level3Layout, level3Mappings } from "./content/level3/level3Layout.js"
 import { Spiders } from "./entities/Spiders.js"
 import { Projectiles } from "./entities/Projectiles.js"
 import { Axes } from "./entities/Axes.js"
+import { Saws } from "./entities/Saws.js"
 
 
 kaboom({
@@ -130,6 +131,13 @@ const scenes = {
         )
         axes.setMovementPattern()
 
+        const saws = new Saws(
+            level2Config.sawPositions.map(sawPos => sawPos()),
+            level2Config.sawRanges
+        )
+
+        saws.setMovementPattern()
+
         attachCamera(player.gameObj, 0, 200)
 
         level2.drawWaves("lava", "wave")
@@ -197,4 +205,4 @@ for (const key in scenes) {
     scene(key, scenes[key])
 }
 
-go("menu")
+go(2)

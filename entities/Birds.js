@@ -35,7 +35,7 @@ export class Birds {
     }
 
     async dive(bird, target, duration) {
-        if (!bird.isOffScreen()) play("dive", { volume: 0.05 })
+        if (!bird.isOffScreen()) play("dive", { volume: 0.03 })
         await tween(
             bird.pos,
             target,

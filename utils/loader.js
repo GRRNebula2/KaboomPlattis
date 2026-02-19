@@ -223,5 +223,8 @@ export const load = {
         loadSound("swinging-axe", "./sounds/swinging-axe.mp3")
         loadSound("saw", "./sounds/saw.wav")
         loadSound("dive", "./sounds/dive.wav")
+        loadSound("water-ambience", "./sounds/water-ambience.mp3")
+        loadSound("lava-ambience", "./sounds/lava.wav")
+        loadSound("strong-wind", "./sounds/strong-wind.wav")
     }
 }

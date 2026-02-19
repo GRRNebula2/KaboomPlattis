@@ -201,6 +201,18 @@ export const load = {
           })
           loadSprite("axe", "./assets/Axe_Trap.png")
           loadSprite("saw", "./assets/Circular_Saw.png")
+          loadSprite("bird", "./assets/Bird_2.png", {
+            sliceX: 3,
+            sliceY: 1,
+            anims: {
+              fly: {
+                from: 0,
+                to: 2,
+                speed: 9,
+                loop: true,
+              },
+            },
+          })
     },
     sounds: () => {
         loadSound("confirm-ui", "./sounds/confirm-ui.wav")
@@ -210,5 +222,6 @@ export const load = {
         loadSound("spider-attack", "./sounds/spider-attack.mp3")
         loadSound("swinging-axe", "./sounds/swinging-axe.mp3")
         loadSound("saw", "./sounds/saw.wav")
+        loadSound("dive", "./sounds/dive.wav")
     }
 }

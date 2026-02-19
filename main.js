@@ -202,10 +202,10 @@ const scenes = {
 
     },
     gameover: () => {
-
+        uiManager.displayGameOverScreen()
     },
     end: () => {
-
+        uiManager.displayEndGameScreen()
     }
 }
 

@@ -140,8 +140,6 @@ export class Player {
                 this.timeSinceLastGrounded = time()
             }
 
-
-
             this.heightDelta = this.previousHeigth - this.gameObj.pos.y
             this.previousHeigth = this.gameObj.pos.y
 

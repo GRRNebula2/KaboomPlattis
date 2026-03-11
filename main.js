@@ -1,6 +1,6 @@
 import kaboom from "./libs/kaboom.mjs"
 import { Player } from "./entities/Player.js"
-import { attachCamera } from "./utils/camera.js"
+import { attachCamera } from "./utils/Camera.js"
 import { Level } from "./utils/Level.js"
 import { uiManager } from "./utils/UIManager.js"
 import { load } from "./utils/loader.js"

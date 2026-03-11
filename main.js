@@ -10,11 +10,6 @@ import { level2Config } from "./content/level2/config.js"
 import { level2Layout, level2Mappings } from "./content/level2/level2Layout.js"
 import { level3Config } from "./content/level3/config.js"
 import { level3Layout, level3Mappings } from "./content/level3/level3Layout.js"
-import { Spiders } from "./entities/Spiders.js"
-import { Projectiles } from "./entities/Projectiles.js"
-import { Axes } from "./entities/Axes.js"
-import { Saws } from "./entities/Saws.js"
-import { Birds } from "./entities/Birds.js"
 
 kaboom({
     width: 1280,
@@ -35,15 +30,6 @@ const scenes = {
     },
     1: () => {
 
-        const waterAmbience = play("water-ambience", {
-            volume: 0.06,
-            loop: true
-        })
-
-        onSceneLeave(() => {
-            waterAmbience.paused = true
-        })
-
         setGravity(1400)
 
         const level1 = new Level()
@@ -62,25 +48,7 @@ const scenes = {
 
         player.enablePassthrough()
         player.enableCoinPickUp()
-        player.enableMobVulnerability()
         player.update()
-
-        const spiders = new Spiders(
-            level1Config.spiderPositions.map(spiderPos => spiderPos()),
-            level1Config.spiderRanges,
-            level1Config.spiderDurations,
-            level1Config.spiderType
-        )
-
-        spiders.setMovementPattern()
-        spiders.enablePassthrough()
-
-        const fish = new Projectiles(
-            level1Config.fishPositions.map(fishPos => fishPos()),
-            level1Config.fishRanges,
-            "fish"
-        )
-        fish.setMovementPattern()
 
         attachCamera(player.gameObj, 0, 200)
 
@@ -97,14 +65,7 @@ const scenes = {
 
     },
     2: () => {
-        const lavaAmbience = play("lava-ambience", {
-            loop: true
-        })
-
-        onSceneLeave(() => {
-            lavaAmbience.paused = true
-        })
-
+        
         setGravity(1400)
 
         const level2 = new Level()
@@ -123,43 +84,11 @@ const scenes = {
 
         player.enablePassthrough()
         player.enableCoinPickUp()
-        player.enableMobVulnerability()
         player.update()
-
-        const spiders = new Spiders(
-            level2Config.spiderPositions.map(spiderPos => spiderPos()),
-            level2Config.spiderRanges,
-            level2Config.spiderDurations,
-            level2Config.spiderType
-        )
-
-        spiders.setMovementPattern()
-        spiders.enablePassthrough()
-
-        const flames = new Projectiles(
-            level2Config.flamePositions.map(flamePos => flamePos()),
-            level2Config.flameRanges,
-            "flame"
-        )
-        flames.setMovementPattern()
-
-        const axes = new Axes(
-            level2Config.axesPositions.map(axePos => axePos()),
-            level2Config.axesSwingDurations,
-        )
-        axes.setMovementPattern()
-
-        const saws = new Saws(
-            level2Config.sawPositions.map(sawPos => sawPos()),
-            level2Config.sawRanges
-        )
-
-        saws.setMovementPattern()
 
         attachCamera(player.gameObj, 0, 200)
 
         level2.drawWaves("lava", "wave")
-
         
         uiManager.addDarkBg()
 
@@ -172,16 +101,6 @@ const scenes = {
 
     },
     3: () => {
-
-        const strongWind = play("strong-wind", {
-            volume: 0.1,
-            loop: true
-        })
-
-        onSceneLeave(() => {
-            strongWind.paused = true
-        })
-
 
         setGravity(1400)
 
@@ -204,15 +123,7 @@ const scenes = {
 
         player.enablePassthrough()
         player.enableCoinPickUp()
-        player.enableMobVulnerability()
         player.update()
-
-        const birds = new Birds(
-            level3Config.birdPositions.map(birdPos => birdPos()),
-            level3Config.birdRanges
-        )
-
-        birds.setMovementPattern()
 
         attachCamera(player.gameObj, 0, 200)
 

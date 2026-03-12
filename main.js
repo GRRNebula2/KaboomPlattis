@@ -12,6 +12,10 @@ import { level3Config } from "./content/level3/config.js"
 import { level3Layout, level3Mappings } from "./content/level3/level3Layout.js"
 import { Spiders } from "./entities/Spiders.js"
 import { Projectiles } from "./entities/Projectiles.js"
+import { Axes } from "./entities/Axes.js"
+import { Saws } from "./entities/Saws.js"
+
+
 
 
 
@@ -126,6 +130,19 @@ const scenes = {
             "flame"
         )
         flames.setMovementPattern()
+
+        const axes = new Axes(
+            level2Config.axesPositions.map(axePos => axePos()),
+            level2Config.axesSwingDurations,
+        )
+        axes.setMovementPattern()
+
+        const saws = new Saws(
+            level2Config.sawPositions.map(sawPos => sawPos()),
+            level2Config.sawRanges
+        )
+
+        saws.setMovementPattern()
 
 
         attachCamera(player.gameObj, 0, 200)

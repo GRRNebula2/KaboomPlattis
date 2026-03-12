@@ -11,6 +11,8 @@ import { level2Layout, level2Mappings } from "./content/level2/level2Layout.js"
 import { level3Config } from "./content/level3/config.js"
 import { level3Layout, level3Mappings } from "./content/level3/level3Layout.js"
 import { Spiders } from "./entities/Spiders.js"
+import { Projectiles } from "./entities/Projectiles.js"
+
 
 
 kaboom({
@@ -63,6 +65,14 @@ const scenes = {
         spiders.setMovementPattern()
         spiders.enablePassthrough()
 
+        const fish = new Projectiles(
+            level1Config.fishPositions.map(fishPos => fishPos()),
+            level1Config.fishRanges,
+            "fish"
+        )
+        fish.setMovementPattern()
+
+
         attachCamera(player.gameObj, 0, 200)
 
         level1.drawWaves("water", "wave")
@@ -109,6 +119,14 @@ const scenes = {
         
         spiders.setMovementPattern()
         spiders.enablePassthrough()
+
+        const flames = new Projectiles(
+            level2Config.flamePositions.map(flamePos => flamePos()),
+            level2Config.flameRanges,
+            "flame"
+        )
+        flames.setMovementPattern()
+
 
         attachCamera(player.gameObj, 0, 200)
 

@@ -40,6 +40,15 @@ const scenes = {
     },
     1: () => {
 
+        const waterAmbience = play("water-ambience", {
+            volume: 0.06,
+            loop: true
+        })
+
+        onSceneLeave(() => {
+            waterAmbience.paused = true
+        })
+
         setGravity(1400)
 
         const level1 = new Level()
@@ -94,6 +103,15 @@ const scenes = {
 
     },
     2: () => {
+
+        const lavaAmbience = play("lava-ambience", {
+            loop: true
+        })
+
+        onSceneLeave(() => {
+            lavaAmbience.paused = true
+        })
+
         
         setGravity(1400)
 
@@ -162,6 +180,15 @@ const scenes = {
 
     },
     3: () => {
+
+        const strongWind = play("strong-wind", {
+            volume: 0.1,
+            loop: true
+        })
+
+        onSceneLeave(() => {
+            strongWind.paused = true
+        })
 
         setGravity(1400)
 
